@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 
 const Formulaire = () => {
   const [submit, setSubmit] = useState(false);
@@ -24,76 +25,104 @@ const Formulaire = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>Theme</label>
-        <input
-          type="text"
-          name="theme"
-          value={formData.theme}
-          onChange={handleChange}
-        />
-        <br />
+    <Container>
+      <h1 className="my-4 text-center">Formulaire de l'événement</h1>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="theme">
+              <Form.Label>Theme</Form.Label>
+              <Form.Control
+                type="text"
+                name="theme"
+                value={formData.theme}
+                onChange={handleChange}
+                placeholder="Enter the event theme"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="nom_complet">
+              <Form.Label>Expert</Form.Label>
+              <Form.Control
+                type="text"
+                name="nom_complet"
+                value={formData.nom_complet}
+                onChange={handleChange}
+                placeholder="Enter the expert's name"
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <label>Date début</label>
-        <input
-          type="date"
-          name="date_debut"
-          value={formData.date_debut}
-          onChange={handleChange}
-        />
-        <br />
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="date_debut">
+              <Form.Label>Date début</Form.Label>
+              <Form.Control
+                type="date"
+                name="date_debut"
+                value={formData.date_debut}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="date_fin">
+              <Form.Label>Date fin</Form.Label>
+              <Form.Control
+                type="date"
+                name="date_fin"
+                value={formData.date_fin}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <label>Date fin</label>
-        <input
-          type="date"
-          name="date_fin"
-          value={formData.date_fin}
-          onChange={handleChange}
-        />
-        <br />
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="cout">
+              <Form.Label>Coût</Form.Label>
+              <Form.Control
+                type="text"
+                name="cout"
+                value={formData.cout}
+                onChange={handleChange}
+                placeholder="Enter the event cost"
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <label>Coût</label>
-        <input
-          type="text"
-          name="cout"
-          value={formData.cout}
-          onChange={handleChange}
-        />
-        <br />
-        <label>Expert</label>
-        <input
-          type="text"
-          name="nom_complet"
-          value={formData.nom_complet}
-          onChange={handleChange}
-        />
-        <br />
-
-        <button type="submit">Confirmer</button>
-      </form>
+        <Button variant="primary" type="submit" className="mt-3">
+          Confirmer
+        </Button>
+      </Form>
 
       {submit && (
-        <div>
-          <h1>Formulaire de l'événement</h1>
-          <h6>Thème:</h6>
-          <strong>{formData.theme}</strong>
-          <br />
-          <h6>Date début:</h6>
-          <strong>{formData.date_debut}</strong>
-          <br />
-          <h6>Date fin:</h6>
-          <strong>{formData.date_fin}</strong>
-          <br />
-          <h6>Coût:</h6>
-          <strong>{formData.cout}</strong>
-          <br />
-          <h6>Expert:</h6>
-          <strong>{formData.nom_complet}</strong>
-          <br />
+        <div className="mt-4">
+          <h2>Résumé de l'événement</h2>
+          <ul>
+            <li>
+              <strong>Thème:</strong> {formData.theme}
+            </li>
+            <li>
+              <strong>Date début:</strong> {formData.date_debut}
+            </li>
+            <li>
+              <strong>Date fin:</strong> {formData.date_fin}
+            </li>
+            <li>
+              <strong>Coût:</strong> {formData.cout}
+            </li>
+            <li>
+              <strong>Expert:</strong> {formData.nom_complet}
+            </li>
+          </ul>
         </div>
       )}
-    </>
+    </Container>
   );
 };
 
